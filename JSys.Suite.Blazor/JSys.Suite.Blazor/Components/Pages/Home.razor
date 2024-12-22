@@ -1,0 +1,18 @@
+﻿@using JSys.Suite.Blazor.Components.Layout
+
+@layout BaseLayout
+@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<RadzenButton Click="@ButtonClicked" Text="Hi"></RadzenButton>
+@code {
+    void ButtonClicked()
+    {
+        // Handle the Click event of RadzenButton
+    }
+}

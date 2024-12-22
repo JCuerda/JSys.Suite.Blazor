@@ -1,0 +1,33 @@
+﻿@inherits LayoutComponentBase
+
+<RadzenLayout>
+    <RadzenHeader>
+        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="2">
+            <RadzenSidebarToggle Click="@(() => sidebarExpanded = !sidebarExpanded)" />
+        </RadzenStack>
+    </RadzenHeader>
+    <RadzenSidebar Responsive="false" Style="width: max-content">
+        <RadzenPanelMenu DisplayStyle="@(sidebarExpanded ? MenuItemDisplayStyle.IconAndText : MenuItemDisplayStyle.Icon)" ShowArrow="true">
+            <RadzenPanelMenuItem Text="Dashboard" Icon="dashboard" />
+            <RadzenPanelMenuItem Text="Filings" Icon="folder">
+                <RadzenPanelMenuItem Text="Missed Logs" Icon="edit_note" />
+                <RadzenPanelMenuItem Text="Official Business" Icon="work" />
+                <RadzenPanelMenuItem Text="Overtime" Icon="schedule" />
+                <RadzenPanelMenuItem Text="Offset" Icon="history" />
+                <RadzenPanelMenuItem Text="Time Off" Icon="flight_takeoff" />
+            </RadzenPanelMenuItem>
+        </RadzenPanelMenu>
+    </RadzenSidebar>
+    <RadzenBody>
+        <div class="rz-p-4">
+            @Body
+        </div>
+    </RadzenBody>
+    <RadzenFooter>
+        JSys Suite - Human Resource Information System. Version 1.0.0.0
+    </RadzenFooter>
+</RadzenLayout>
+
+@code {
+    bool sidebarExpanded = true;
+}
