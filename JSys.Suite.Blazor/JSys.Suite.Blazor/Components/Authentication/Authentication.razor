@@ -1,0 +1,53 @@
+﻿@page "/login"
+
+@using JSys.Suite.Blazor.Components.Authentication.Model
+@using JSys.Suite.Blazor.Components.Layout
+
+@layout MainLayout
+
+<RadzenTemplateForm TItem="User" Data="@User" Submit=@Login>
+    <RadzenPanel class="rz-my-10 rz-mx-auto" Style="width: 500px;" >
+        <HeaderTemplate>
+            <RadzenText TextStyle="TextStyle.H6" class="rz-display-flex rz-align-items-center rz-m-0">
+                <RadzenIcon Icon="lock" class="rz-me-1" /><b>Welcome to JSys Suite - Human Resource</b>
+            </RadzenText>
+        </HeaderTemplate>
+        <ChildContent>
+            <RadzenCard class="rz-mt-4">
+                <RadzenStack>
+                    
+                    <RadzenRow>
+                        <RadzenColumn>
+                            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Username</RadzenText>
+                            <RadzenStack Gap="2">
+                                <RadzenTextBox Name="Username" @bind-Value="User.Username"/>
+                                <RadzenRequiredValidator
+                                    Component="Username"
+                                    Text="Username is required"
+                                    Popup=@popup
+                                    Style="position: relative"/>
+                            </RadzenStack>
+                        </RadzenColumn>
+                    </RadzenRow>
+
+                    <RadzenRow>
+                        <RadzenColumn>
+                            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Password</RadzenText>
+                            <RadzenStack Gap="2">
+                                <RadzenPassword Name="Password" @bind-Value="User.Password"/>
+                                <RadzenRequiredValidator
+                                    Component="Password"
+                                    Text="Password is required"
+                                    Popup=@popup
+                                    Style="position: relative"/>
+                            </RadzenStack>
+                        </RadzenColumn>
+                    </RadzenRow>
+
+                    <RadzenButton ButtonType="ButtonType.Submit" Text="Submit" ButtonStyle="ButtonStyle.Dark"/>
+
+                </RadzenStack>
+            </RadzenCard>
+        </ChildContent>
+    </RadzenPanel>
+</RadzenTemplateForm>

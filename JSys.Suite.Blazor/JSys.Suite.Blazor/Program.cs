@@ -9,6 +9,7 @@ builder.Services.AddRazorComponents()
 	.AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddRadzenComponents();
+builder.Services.AddScoped<TooltipService>();
 
 var app = builder.Build();
 
