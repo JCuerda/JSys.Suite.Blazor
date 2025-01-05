@@ -1,26 +1,40 @@
 ﻿@page "/login"
 
-@using JSys.Suite.Blazor.Components.Authentication.Model
+@using JSys.Suite.Blazor.Components.Authentication.Client.Request
 @using JSys.Suite.Blazor.Components.Layout
 
 @layout MainLayout
 
-<RadzenTemplateForm TItem="User" Data="@User" Submit=@Login>
+<RadzenTemplateForm TItem="LoginRequest" Data="@Request" Submit=@Login>
     <RadzenPanel class="rz-my-10 rz-mx-auto" Style="width: 500px;" >
         <HeaderTemplate>
             <RadzenText TextStyle="TextStyle.H6" class="rz-display-flex rz-align-items-center rz-m-0">
-                <RadzenIcon Icon="lock" class="rz-me-1" /><b>Welcome to JSys Suite - Human Resource</b>
+                <RadzenIcon Icon="lock" class="rz-me-1" />
+                <b>Welcome to JSys Suite - Human Resource</b>
             </RadzenText>
         </HeaderTemplate>
         <ChildContent>
             <RadzenCard class="rz-mt-4">
+                @if (AuthenticationFailureResponse is not null && AuthenticationFailureResponse.HasErrors)
+                {
+                    @foreach (var error in AuthenticationFailureResponse.Errors)
+                    {
+                        <RadzenAlert Variant="Variant.Filled"
+                                     AlertStyle="AlertStyle.Danger"
+                                     Size="AlertSize.Medium"
+                                     Shade="Shade.Dark"
+                                     AllowClose=false>
+                            @error.Message
+                        </RadzenAlert>
+                    }
+                }
+                
                 <RadzenStack>
-                    
                     <RadzenRow>
                         <RadzenColumn>
                             <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Username</RadzenText>
                             <RadzenStack Gap="2">
-                                <RadzenTextBox Name="Username" @bind-Value="User.Username"/>
+                                <RadzenTextBox Name="Username" @bind-Value="Request!.Username "/>
                                 <RadzenRequiredValidator
                                     Component="Username"
                                     Text="Username is required"
@@ -34,7 +48,7 @@
                         <RadzenColumn>
                             <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Password</RadzenText>
                             <RadzenStack Gap="2">
-                                <RadzenPassword Name="Password" @bind-Value="User.Password"/>
+                                <RadzenPassword Name="Password" @bind-Value="Request!.Password"/>
                                 <RadzenRequiredValidator
                                     Component="Password"
                                     Text="Password is required"

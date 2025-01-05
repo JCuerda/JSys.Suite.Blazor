@@ -1,5 +1,8 @@
 using JSys.Suite.Blazor.Components;
+using JSys.Suite.Blazor.Components.Authentication.Client;
+using Microsoft.AspNetCore.Authentication;
 using Radzen;
+using Refit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +13,9 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddRadzenComponents();
 builder.Services.AddScoped<TooltipService>();
+
+builder.Services.AddRefitClient<IAuthenticationApiClient>()
+	.ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7001"));
 
 var app = builder.Build();
 

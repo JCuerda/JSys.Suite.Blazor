@@ -8,6 +8,8 @@
 
     <ItemGroup>
         <PackageReference Include="Radzen.Blazor" Version="5.7.1" />
+        <PackageReference Include="Refit" Version="8.0.0" />
+        <PackageReference Include="Refit.HttpClientFactory" Version="8.0.0" />
         <ProjectReference Include="..\JSys.Suite.Blazor.Client\JSys.Suite.Blazor.Client.csproj" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.11" />
     </ItemGroup>
